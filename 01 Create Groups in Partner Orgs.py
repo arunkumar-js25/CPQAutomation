@@ -1,6 +1,6 @@
 """
 Author: FellowBeginner
-Blog: https://fellowbeginners.wordpress.com/
+Blog: https://fellowbeginners.wordpress.com
 
 Automation Script: Create groups in partner organisations in CPQ instance
 Application: Oracle CPQ
