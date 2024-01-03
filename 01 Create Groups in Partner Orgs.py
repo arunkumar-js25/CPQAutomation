@@ -18,10 +18,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-cpqInstanceName = "XXX"
-username = "usrname"
-password = "pssword"
-chromedriverPath = ".\driver\chromedriver.exe" #path to selenium chromium driver
+cpqInstanceName = "SiteName"
+username = "username"
+password = "password"
+chromedriverPath = "\driver\chromedriver.exe" #path for selenium chromium driver
 
 #Basic URL used
 url = "https://" + cpqInstanceName + ".bigmachines.com"
@@ -73,6 +73,11 @@ for i in range(pagesCount + 1):
 
     if(i<noOfPagesToSkip):
         continue
+    elif(i==noOfPagesToSkip):
+        for j in range(i + 1):
+            ActionChains(driver).key_down(Keys.CONTROL).key_down(Keys.END).key_up(Keys.CONTROL).perform()
+            driver.find_element_by_id("next_iter_link").click()
+            time.sleep(5)
 
     count = 1
     list_of_companies = [[x.get_attribute('href'), x.text] for x in
@@ -95,8 +100,8 @@ for i in range(pagesCount + 1):
             driver.get(url + "/admin/groups/list_groups.jsp?_bm_trail_refresh_=true")
             time.sleep(2)
 
-            createGroup(companyName, "Partner User", "partnerUser",True)
-            createGroup(companyName, "Partner Manager", "partnerManager")
+            createGroup(companyName, "User", "user",True)
+            createGroup(companyName, "Manager", "manager")
 
             driver.get(proxylogout)
             time.sleep(5)
